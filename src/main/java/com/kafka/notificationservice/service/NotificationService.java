@@ -13,8 +13,8 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
 
-    @KafkaListener(topics = "notification")
-    void listener(String message){
+    @KafkaListener(topics = "notification", groupId = "notify")
+    public void listener(String message){
         Notifications notifications = new Notifications();
         notifications.setMessage(message);
         notificationRepository.save(notifications);
